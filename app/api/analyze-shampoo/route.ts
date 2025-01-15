@@ -71,9 +71,19 @@ Based on this information, `;
     return Response.json({ response: text.trim() });
   } catch (error) {
     console.error("Error getting recommendation:", error);
+  
+    // Safely narrow down the error type
+    if (error instanceof Error) {
+      return Response.json(
+        { error: "Failed to get recommendation", message: error.message },
+        { status: 500 }
+      );
+    }
+  
+    // Handle unexpected cases
     return Response.json(
-      { error: "Failed to get recommendation", message: error.message },
+      { error: "An unexpected error occurred." },
       { status: 500 }
     );
   }
-}
+};

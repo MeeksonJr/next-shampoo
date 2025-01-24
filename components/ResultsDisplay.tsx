@@ -1,6 +1,7 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Sparkles, Lightbulb, DollarSign } from 'lucide-react'
+// Updated ResultsDisplay component
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Sparkles, Lightbulb, DollarSign } from "lucide-react";
 
 interface ResultsProps {
   results: {
@@ -9,22 +10,38 @@ interface ResultsProps {
     price?: string;
     ingredients?: string[];
     alternatives?: string[];
-    tips?: string[];
-  }
+    tips?: string[] | string; // Allow tips to be either an array or a single string
+  };
 }
 
 export default function ResultsDisplay({ results }: ResultsProps) {
   const getPriceIcon = (price: string) => {
     switch (price) {
-      case '$':
+      case "$":
         return <DollarSign className="w-4 h-4" />;
-      case '$$':
-        return <div className="flex"><DollarSign className="w-4 h-4" /><DollarSign className="w-4 h-4" /></div>;
-      case '$$$':
-        return <div className="flex"><DollarSign className="w-4 h-4" /><DollarSign className="w-4 h-4" /><DollarSign className="w-4 h-4" /></div>;
+      case "$$":
+        return (
+          <div className="flex">
+            <DollarSign className="w-4 h-4" />
+            <DollarSign className="w-4 h-4" />
+          </div>
+        );
+      case "$$$":
+        return (
+          <div className="flex">
+            <DollarSign className="w-4 h-4" />
+            <DollarSign className="w-4 h-4" />
+            <DollarSign className="w-4 h-4" />
+          </div>
+        );
       default:
         return price;
     }
+  };
+
+  const parseTips = (tips: string[] | string) => {
+    if (Array.isArray(tips)) return tips;
+    return tips.split(/\d+\.\s*/).filter(Boolean); // Parse numbered tips if provided as a single string
   };
 
   return (
@@ -89,7 +106,7 @@ export default function ResultsDisplay({ results }: ResultsProps) {
         </Card>
       )}
 
-      {results.tips && results.tips.length > 0 && (
+      {results.tips && parseTips(results.tips).length > 0 && (
         <Card className="bg-teal-50">
           <CardHeader>
             <CardTitle className="flex items-center text-teal-700">
@@ -98,10 +115,8 @@ export default function ResultsDisplay({ results }: ResultsProps) {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {/* Need to be fixed. issue when trying to display results using map. */}
-            
             <ul className="list-disc list-inside space-y-2">
-              {results.tips.map((tip, index) => (
+              {parseTips(results.tips).map((tip, index) => (
                 <li key={index} className="text-gray-700">{tip}</li>
               ))}
             </ul>
@@ -109,6 +124,5 @@ export default function ResultsDisplay({ results }: ResultsProps) {
         </Card>
       )}
     </div>
-  )
+  );
 }
-

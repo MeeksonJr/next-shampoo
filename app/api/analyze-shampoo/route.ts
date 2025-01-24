@@ -33,12 +33,12 @@ Based on this information, `;
       case "brand":
         prompt =
           basePrompt +
-          "recommend a specific shampoo brand and product name. Respond with only the brand and product name, nothing else.";
+          "recommend a shampoo brand and product name. Respond with only the brand and product name, nothing else.";
         break;
       case "reason":
         prompt =
           basePrompt +
-          "explain in detail why the recommended shampoo is suitable for this hair profile. Provide a paragraph of explanation.";
+          "explain in detail why this shampoo is suitable for this hair profile. Provide a paragraph of explanation. Try to be detailedand understand of the hair profile.";
         break;
       case "price":
         prompt =
@@ -48,17 +48,17 @@ Based on this information, `;
       case "ingredients":
         prompt =
           basePrompt +
-          "list 3-5 key ingredients of the recommended shampoo. Respond with only a comma-separated list of ingredients.";
+          "list 6 key ingredients of the recommended shampoo. Respond with only a comma-separated list of ingredients.";
         break;
       case "alternatives":
         prompt =
           basePrompt +
-          "suggest two alternative shampoo brands. Respond with only the two brand names separated by a comma.";
+          "suggest 4 alternative shampoo brands. Respond with only the 4 brand names separated by a comma.";
         break;
       case "tips":
         prompt =
           basePrompt +
-          "provide 3 specific tips for using the recommended shampoo and maintaining healthy hair based on this profile. Respond with a numbered list of 3 tips.";
+          "provide 3-5 specific tips for using the recommended shampoo and maintaining healthy hair based on this profile. Respond with a numbered list of 3-5 tips.";
         break;
       default:
         return Response.json({ error: "Invalid step" }, { status: 400 });

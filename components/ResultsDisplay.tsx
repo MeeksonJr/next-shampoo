@@ -98,6 +98,8 @@ export default function ResultsDisplay({ results }: ResultsProps) {
             </CardTitle>
           </CardHeader>
           <CardContent>
+            {/* Need to be fixed. issue when trying to display results using map. */}
+            
             <ul className="list-disc list-inside space-y-2">
               {results.tips.map((tip, index) => (
                 <li key={index} className="text-gray-700">{tip}</li>

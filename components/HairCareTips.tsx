@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Lightbulb } from 'lucide-react'
+import { Lightbulb } from "lucide-react"
 
 export default function HairCareTips() {
   const tips = [
@@ -8,27 +8,26 @@ export default function HairCareTips() {
     "Gently pat your hair dry with a microfiber towel to reduce frizz.",
     "Trim your hair every 6-8 weeks to prevent split ends.",
     "Use a heat protectant spray before using hot styling tools.",
-    "Brush your hair from the bottom up to detangle gently.",
-    "Avoid washing your hair every day to maintain natural oils.",
-    "Use a silk or satin pillowcase to reduce friction while sleeping.",
-    "Incorporate a scalp massage into your hair care routine to stimulate growth.",
-    "Protect your hair from sun damage by wearing a hat or using UV-protective products."
   ]
 
   return (
-    <Card className="bg-teal-50">
-      <CardHeader>
-        <CardTitle className="flex items-center text-teal-
-700">
-          <Lightbulb className="w-5 h-5 mr-2 text-yellow-500" />
+    <Card className="bg-card shadow-lg">
+      <CardHeader className="bg-primary/10">
+        <CardTitle className="flex items-center text-secondary">
+          <Lightbulb className="w-5 h-5 mr-2 text-primary" />
           Expert Hair Care Tips
         </CardTitle>
-        <CardDescription>Unlock the secrets to healthier, more beautiful hair</CardDescription>
+        <CardDescription className="text-secondary/80">
+          Improve your hair care routine with these professional tips
+        </CardDescription>
       </CardHeader>
-      <CardContent>
-        <ul className="list-disc list-inside space-y-2">
+      <CardContent className="mt-4">
+        <ul className="space-y-2">
           {tips.map((tip, index) => (
-            <li key={index} className="text-gray-700">{tip}</li>
+            <li key={index} className="flex items-start">
+              <span className="text-accent mr-2">•</span>
+              <span className="text-muted-foreground">{tip}</span>
+            </li>
           ))}
         </ul>
       </CardContent>

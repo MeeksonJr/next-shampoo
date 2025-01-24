@@ -8,6 +8,8 @@ export async function POST(req: Request) {
     const {
       hairType,
       scalpType,
+      hairLength,
+      region, // added region
       hairConcerns,
       isColorTreated,
       hairWashFrequency,
@@ -21,6 +23,8 @@ export async function POST(req: Request) {
 
 Hair Type: ${hairType}
 Scalp Type: ${scalpType}
+Hair Length: ${hairLength} cm
+Region: ${region} 
 Hair Concerns: ${hairConcerns.join(", ")}
 Color Treated: ${isColorTreated ? "Yes" : "No"}
 Wash Frequency: ${hairWashFrequency}

@@ -1,4 +1,3 @@
-// Updated ResultsDisplay component
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Lightbulb, DollarSign } from "lucide-react";
@@ -41,7 +40,7 @@ export default function ResultsDisplay({ results }: ResultsProps) {
 
   const parseTips = (tips: string[] | string) => {
     if (Array.isArray(tips)) return tips;
-    return tips.split(/\d+\.\s*/).filter(Boolean); // Parse numbered tips if provided as a single string
+    return tips.split("\n").map((tip) => tip.replace(/^\d+\.\s*/, "")); // Parse numbered tips if provided as a single string
   };
 
   return (
